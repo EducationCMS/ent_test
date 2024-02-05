@@ -14,9 +14,10 @@ export default defineConfig({
       // propsDestructure: true
     }
   }), svgLoader()],
-  // server: {
+  server: {
   //   https: true
-  // },
+    port: 5175
+  },
   resolve: {
     extensions: ["*", ".js", ".ts", ".vue", ".json"],
     alias: {
