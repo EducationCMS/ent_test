@@ -39,7 +39,7 @@ onMounted(() => {
           class="layout__sidebar__logo cursor-pointer align-self-center mb-4"
           @click="router.push({ name: 'Home' })"
       >
-        Vanres
+        TestKenes
       </h1>
       <div
           v-for="(item, index) in ADMIN_MENU_ITEMS"
