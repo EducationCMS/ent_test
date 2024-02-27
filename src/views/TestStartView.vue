@@ -108,11 +108,12 @@ onMounted(() => {
 <template>
   <div class="flex flex-column h-screen">
     <div class="md:px-6 px-3 flex align-items-center justify-content-between">
-      <img
-        src="@/assets/images/logo.png"
-        alt="inSight logo"
-        class="logo cursor-pointer mb-3"
-      />
+      <h1
+          class="layout__sidebar__logo cursor-pointer align-self-center mb-4"
+          @click="router.push({ name: 'Home' })"
+      >
+        TestKenes
+      </h1>
       <div class="flex align-items-center gap-4">
         <div v-if="user" class="flex align-items-center cursor-pointer py-3">
           <Avatar :label="`${user?.lastName.charAt(0)}${user?.firstName.charAt(0)}`" class="mr-2 text-lg" size="large" shape="circle" />
@@ -125,13 +126,6 @@ onMounted(() => {
     </div>
     <div class="flex-1 flex flex-column align-items-center pb-6">
       <h1>Онлайн тест</h1>
-      <div class="mt-4 mb-6 border-circle p-5 bg-green-300 flex align-items-center justify-content-center">
-        <img
-          src="@/assets/images/ring.png"
-          class="cursor-pointer"
-          height="160"
-        />
-      </div>
       <div class="grid justify-content-evenly" style="max-width: 800px; width: 100%">
         <div  v-if="!!error" class="col-12">
           <Message :closable="false" severity="error">{{ error }}</Message>
@@ -145,7 +139,7 @@ onMounted(() => {
                 :options="firstSubjects"
                 option-label="name"
                 option-value="id"
-                placeholder="Бірінші пән"
+                placeholder="Первый предмет"
                 @change="onFirstSubjectChange"
               />
               <Dropdown
@@ -156,46 +150,25 @@ onMounted(() => {
                 class="mt-3"
                 :loading="isSubjectsLoading"
                 :disabled="!subjectOne"
-                placeholder="Екінші пән"
+                placeholder="Второй предмет"
               />
             </div>
             <Button
               class="mt-5 w-full"
               :disabled="!subjectTwo || !subjectOne"
               :loading="isGenerating"
-              label="Тестті бастау"
+              label="Начать тест"
               @click="generateTest('SURVIVAL')"
             />
             <div class="border-top-1 border-gray-300 mt-4">
-              <p class="font-medium text-center text-gray-700 uppercase">Шығармашылық</p>
+              <p class="font-medium text-center text-gray-700 uppercase">Творческий Экзамен</p>
               <Button
                 class="w-full"
                 :loading="isGenerating"
-                label="Тестті бастау"
+                label="Начать тест"
                 @click="generateTest('CREATIVE')"
               />
             </div>
-          </div>
-        </div>
-        <div class="col-12 md:col-5">
-          <div class="border-3 border-green-500 border-round-2xl px-4 pb-4">
-            <p class="text-center text-3xl font-semibold">МОДО</p>
-            <Dropdown
-              v-model="selectedClass"
-              :options="classes"
-              option-label="name"
-              option-value="id"
-              class="w-full"
-              :loading="classesIsLoading"
-              placeholder="Сынып"
-            />
-            <Button
-              class="mt-5 w-full bg-green-500"
-              :disabled="true"
-              :loading="isGenerating"
-              label="Тестті бастау"
-              @click="generateTest"
-            />
           </div>
         </div>
       </div>
