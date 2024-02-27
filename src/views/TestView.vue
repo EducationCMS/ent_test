@@ -130,7 +130,7 @@ const getTest = async(id: string) => {
     if(timeDifference) time.value = time.value - timeDifference
   } catch(e) {
     console.error(e)
-    error.value = "Тест табылмады"
+    error.value = "Тест не найден"
     throw e
   } finally {
     isLoading.value = false
@@ -335,7 +335,7 @@ onMounted(() => {
             <p
               v-if="activeQuestion.multipleAnswers"
               class="font-medium text-sm text-gray-500"
-            >Сұрақтың бірнеше жауабы бар</p>
+            >На вопрос есть несколько ответов</p>
             <Image
               v-if="activeQuestion.mediaFiles && activeQuestion.mediaFiles[0]"
               preview
@@ -419,7 +419,7 @@ onMounted(() => {
           />
           <Button
             severity="danger"
-            label="Аяқтау"
+            label="Завершить"
             class="ml-auto md:w-auto w-full md:mt-0 mt-4"
             :loading="isFinishing"
             @click="finishTest"
@@ -429,7 +429,7 @@ onMounted(() => {
     </template>
     <template v-else-if="status === 'finished'">
       <div class="flex flex-column align-items-center">
-        <h1 class="mb-6">Тест нәтижесі</h1>
+        <h1 class="mb-6">Результат теста</h1>
         <CircleProgress
           size="150"
           :percent="testScore"
@@ -450,7 +450,7 @@ onMounted(() => {
           </div>
         </div>
         <Button
-          label="Аяқтау"
+          label="Завершить"
           class="mt-5"
           size="large"
           @click="closeTest"
