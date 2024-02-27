@@ -5,12 +5,12 @@ import { useUserStore } from "@/stores/user"
 import { storeToRefs } from "pinia"
 
 const ADMIN_MENU_ITEMS = [
-  { label: 'Сынақ оқушылары', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/add_user.svg`)), routeName: 'AdminStudents' },
-  { label: 'Сынақ нәтижелері', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/analytics.svg`)), routeName: 'AdminStudentResults' },
-  { label: 'Мектептер', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/graduation_cap.svg`)), routeName: 'AdminSchools' },
-  { label: 'Сыныптар', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/briefcase.svg`)), routeName: 'AdminClasses' },
-  { label: 'ҰБТ матрицасы', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/sitemap.svg`)), routeName: 'AdminMatrix' },
-  { label: 'ОЖСБ матрицасы', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/sitemap.svg`)), routeName: 'AdminSchoolMatrix' },
+  { label: 'Пробные ученики', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/add_user.svg`)), routeName: 'AdminStudents' },
+  { label: 'Результаты проб', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/analytics.svg`)), routeName: 'AdminStudentResults' },
+  { label: 'Школы', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/graduation_cap.svg`)), routeName: 'AdminSchools' },
+  { label: 'Классы', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/briefcase.svg`)), routeName: 'AdminClasses' },
+  { label: 'Матрица ЕНТ', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/sitemap.svg`)), routeName: 'AdminMatrix' },
+  { label: 'Матрица ОУСО', icon: defineAsyncComponent(() => import(`@/assets/images/icons/sidebar/sitemap.svg`)), routeName: 'AdminSchoolMatrix' },
 ]
 
 const router = useRouter()
@@ -35,23 +35,23 @@ onMounted(() => {
 <template>
   <div class="relative">
     <div class="layout__sidebar flex flex-column">
-      <img
-        src="@/assets/images/logo.png"
-        alt="inSight logo"
-        class="layout__sidebar__logo cursor-pointer align-self-center mb-4"
-        @click="router.push({ name: 'Home' })"
-      />
+      <h1
+          class="layout__sidebar__logo cursor-pointer align-self-center mb-4"
+          @click="router.push({ name: 'Home' })"
+      >
+        Vanres
+      </h1>
       <div
-        v-for="(item, index) in ADMIN_MENU_ITEMS"
-        :key="item.icon"
-        class="flex align-items-center cursor-pointer px-4 py-3 layout__sidebar__menu-item"
-        :class="[current_router_name === item.routeName && 'is-active']"
-        @click="router.push({ name: item.routeName })"
+          v-for="(item, index) in ADMIN_MENU_ITEMS"
+          :key="item.icon"
+          class="flex align-items-center cursor-pointer px-4 py-3 layout__sidebar__menu-item"
+          :class="[current_router_name === item.routeName && 'is-active']"
+          @click="router.push({ name: item.routeName })"
       >
         <div class="layout__sidebar__menu-item__icon mr-2">
           <component :is="item.icon" />
-<!--          <component :is="getIcon(item.icon)" />-->
-<!--          <img :src="`/src/assets/images/icons/sidebar/${item.icon}.svg`" :alt="item.label"/>-->
+          <!--          <component :is="getIcon(item.icon)" />-->
+          <!--          <img :src="`/src/assets/images/icons/sidebar/${item.icon}.svg`" :alt="item.label"/>-->
         </div>
         <span>{{ item.label }}</span>
       </div>
@@ -59,7 +59,7 @@ onMounted(() => {
     <div>
       <header class="layout__header flex justify-content-end align-items-center">
         <div class="flex align-items-center gap-4">
-<!--          <i class="pi pi-bell text-xl"></i>-->
+          <!--          <i class="pi pi-bell text-xl"></i>-->
           <div v-if="user" class="flex align-items-center cursor-pointer" @click="logout">
             <Avatar :label="user.firstName[0].toUpperCase()" class="mr-2" size="large" shape="circle" />
             <div>
